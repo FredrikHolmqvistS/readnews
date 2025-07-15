@@ -1,0 +1,7 @@
+# Ignore virtual environment
+venv/
+__pycache__/
+
+# Ignore secret API keys (optional: use .env instead)
+*.mp3
+*.env
