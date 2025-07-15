@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>Text till Tal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card">
+        <h1>🗣️ Text till tal</h1>
+        <form method="post">
+            <label>
+                <input type="radio" name="choice" value="url" checked>
+                Klistra in en artikel-URL
+            </label><br>
+            <input type="text" name="url_input" placeholder="https://..." />
+
+            <br><br>
+            <label>
+                <input type="radio" name="choice" value="text">
+                Eller skriv/klistra in text själv
+            </label><br>
+            <textarea name="text_input" rows="6" placeholder="Skriv något..."></textarea>
+
+            <br><br>
+            <button type="submit">🔊 Skapa ljud</button>
+        </form>
+
+        {% if error %}
+            <p style="color: red;">Fel: {{ error }}</p>
+        {% endif %}
+
+        {% if audio_file %}
+            <h3>🎧 Spela upp ljud:</h3>
+            <audio controls>
+                <source src="{{ url_for('serve_audio', filename=audio_file) }}" type="audio/mpeg">
+                Din webbläsare stöder inte ljuduppspelning.
+            </audio>
+        {% endif %}
+    </div>
+</body>
+</html>
